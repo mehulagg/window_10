@@ -1,0 +1,19 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    wget https://software-download.microsoft.com/pr/Win10_1909_English_x64.iso?t=64f48a73-a9a3-4709-ad22-c4f9296a89d1&e=1580287485&h=a8f6bfd32eee3217985379a1fd25e5ee
+    git lfs install
+    git lfs track "*.iso"
+    git add *
+    git commit -m "add windows"
+    git push https://Preview1:6wtxpzxx3a4oegy2oso5fqweysq7xzkuaflbim7r5secs2mm6paq@dev.azure.com/Preview1/TestPreview/_git/window_10 HEAD:master
